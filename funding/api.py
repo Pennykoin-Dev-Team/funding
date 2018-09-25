@@ -21,7 +21,7 @@ def api_proposals_get(status, cat, limit, offset):
         return 'error', 500
     return [p.json for p in proposals]
 
-@app.route('/api/1/convert/aeon-usd')
+@app.route('/api/1/convert/pk-usd')
 @endpoint.api(
     parameter('amount', type=int, location='args', required=True)
 )

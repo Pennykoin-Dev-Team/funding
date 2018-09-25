@@ -1,10 +1,10 @@
-# AEON Funding System 
+# PK Funding System 
 
 ## Description
 
-Do more with your cryptocurrency by getting the community involved. The goal of the AEON Funding System is to enable community members to complete projects and be paid for the projects by other community members. 
+Do more with your cryptocurrency by getting the community involved. The goal of the PK Funding System is to enable community members to complete projects and be paid for the projects by other community members. 
 
-The AEON Funding System was written entirely in Python. It was originally developed by dsc_ (skftn) for the Wownero currency but later updated by various community members to be accepted for AEON and other cryptonote currencies. 
+The PK Funding System was written entirely in Python. It was originally developed by dsc_ (skftn) for the Wownero currency but later updated by various community members to be accepted for PK and other cryptonote currencies. 
 
 ## Features
 - Simplistic user system
@@ -28,8 +28,8 @@ Better instructions to follow in the future.
 Create a Postgres user/database for this project
 
 ```
-git clone https://github.com/camthegeek/aeon-funding-system.git
-cd aeon-funding-system
+git clone https://github.com/camthegeek/pk-funding-system.git
+cd pk-funding-system
 virtualenv -p /usr/bin/python3 <venv>
 source <venv>/bin/activate
 pip install -r requirements.txt
