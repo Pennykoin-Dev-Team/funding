@@ -7,7 +7,7 @@ body {
         padding-top: 56px;
     }
 }
-.center { 
+.center {
 text-align: center;
 margin: 0 auto 0 auto;
 }
@@ -111,7 +111,15 @@ body {
 }
 
 .bg-dark {
-   background: linear-gradient(90deg, #164450, #5fbcd3);
+   /* background: linear-gradient(90deg, #164450, #5fbcd3); */
+   background-blend-mode: screen;
+   background-color: rgba(0, 0, 0, .8);
+   background-image: url("/static/dot.gif");
+   background-position: top center;
+   -webkit-box-shadow: 0px 0px 5px #0008;
+ 	   -moz-box-shadow: 0px 0px 5px #0008;
+ 	        box-shadow: 0px 0px 5px #0008;
+
    margin-bottom: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -124,7 +132,7 @@ body {
     font-size: 18pt;
     text-shadow: 2px 2px #667ff952;
 }
-.logo-text { 
+.logo-text {
     color: #FFF;
     font-size: 26px;
     font-weight: 700;
@@ -278,7 +286,7 @@ a {
     background-clip: padding-box;
     border: 1px solid #164450;
 }
-.form-group { 
+.form-group {
 margin-bottom: 1rem;
 }
 .form-group:last-of-type {
