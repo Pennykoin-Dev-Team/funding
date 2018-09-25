@@ -4,3 +4,8 @@ settings.py
 .env
 htmlcov
 .coverage
+bin
+lib
+include
+pip.selfcheck.json
+settings.py
