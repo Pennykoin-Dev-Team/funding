@@ -7,5 +7,5 @@ htmlcov
 bin
 lib
 include
-pip.selfcheck.json
+pip-selfcheck.json
 settings.py
