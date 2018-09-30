@@ -78,6 +78,7 @@ def propsal_comment_reply(cid, pid):
 def proposal(pid):
     p = Proposal.find_by_id(pid=pid)
     p.get_comments()
+    print (typeof(p))
     if not p:
         return make_response(redirect(url_for('proposals')))
     return make_response(render_template(('proposal/proposal.html'), proposal=p))
@@ -152,8 +153,8 @@ def proposal_api_add(title, content, pid, funds_target, addr_receiving, category
 
 
     else:
-        try: 
-            funds_target = float(funds_target) 
+        try:
+            funds_target = float(funds_target)
         except Exception as ex:
             return make_response(jsonify('letters detected'),500)
         if funds_target < 1:
@@ -172,7 +173,7 @@ def proposal_api_add(title, content, pid, funds_target, addr_receiving, category
         p.category = category
         p.status = status
         db_session.add(p)
-    
+
 
 
     db_session.commit()
