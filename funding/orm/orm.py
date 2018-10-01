@@ -185,7 +185,7 @@ class Proposal(base):
         all relevant proposal funding info"""
         from funding.bin.utils import Summary, coin_to_usd
         from funding.factory import cache, db_session
-        rtn = {'sum': 0.0, 'txs': [], 'pct': 0.0}
+        rtn = {'sum': 0.0, 'txs': [], 'pct': 0.0, 'available': 0.0}
 
         cache_key = 'coin_balance_pid_%d' % self.id
         data = cache.get(cache_key)
@@ -230,7 +230,7 @@ class Proposal(base):
     def spends(self):
         from funding.bin.utils import Summary, coin_to_usd
         from funding.factory import cache, db_session
-        rtn = {'sum': 0.0, 'txs': [], 'pct': 0.0}
+        rtn = {'sum': 0.0, 'txs': [], 'pct': 0.0, 'spent': 0.0}
 
         cache_key = 'coin_spends_pid_%d' % self.id
         data = cache.get(cache_key)
@@ -287,7 +287,7 @@ class Proposal(base):
             db_session.flush()
             return addr_donation['address']
 
-    @staticmethod  
+    @staticmethod
     def generate_proposal_subaccount(pid):
         from funding.bin.daemon import Daemon
 

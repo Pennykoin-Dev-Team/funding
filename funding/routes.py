@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import request, redirect, Response, abort, render_template, url_for, flash, make_response, send_from_directory, jsonify
-from flask.ext.login import login_user , logout_user , current_user, login_required, current_user
+from flask_login import login_user , logout_user , current_user, login_required, current_user
 from flask_yoloapi import endpoint, parameter
 
 import settings
@@ -78,7 +78,7 @@ def propsal_comment_reply(cid, pid):
 def proposal(pid):
     p = Proposal.find_by_id(pid=pid)
     p.get_comments()
-    print (typeof(p))
+    print ((p))
     if not p:
         return make_response(redirect(url_for('proposals')))
     return make_response(render_template(('proposal/proposal.html'), proposal=p))
