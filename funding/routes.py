@@ -160,11 +160,12 @@ def proposal_api_add(title, content, pid, funds_target, addr_receiving, category
         if funds_target < 1:
                 return make_response(jsonify('Proposal asking less than 1 error :)'), 500)
         if len(addr_receiving) != 97:
-            return make_response(jsonify('Faulty address, should be of length 72'), 500)
+            return make_response(jsonify('Faulty address, should be of length 97'), 500)
 
         p = Proposal(headline=title, content=content, category='misc', user=current_user)
         proposalID = current_user
-        addr_donation = Proposal.generate_proposal_subaccount(proposalID)
+#        addr_donation = Proposal.generate_proposal_subaccount(proposalID)
+        addr_donation = Porposal.get_addr_donation(proposalID)
         p.addr_donation = addr_donation
         p.html = html
         p.last_edited = datetime.now()

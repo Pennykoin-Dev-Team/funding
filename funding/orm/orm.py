@@ -267,35 +267,25 @@ class Proposal(base):
         return data
 
     @staticmethod
-    def generate_donation_addr(cls):
+    def get_addr_donation(cls):
         from funding.factory import db_session
         from funding.bin.daemon import Daemon
         if cls.addr_donation:
             return cls.addr_donation
 
         try:
-            addr_donation = Daemon().get_address(index=cls.id, proposal_id=cls.id)
+            addr_donation = Daemon().get_address(wallet_address=settings.RPC_WADDR, proposal_id=cls.id)
             if not isinstance(addr_donation, dict):
                 raise Exception('get_address, needs dict; %d' % cls.id)
         except Exception as ex:
             print('error: %s' % str(ex))
             return
 
-        if addr_donation.get('address'):
-            cls.addr_donation = addr_donation['address']
+        if addr_donation.get('integrated_address'):
+            cls.addr_donation = addr_donation['integrated_address']
             db_session.commit()
             db_session.flush()
-            return addr_donation['address']
-
-    @staticmethod
-    def generate_proposal_subaccount(pid):
-        from funding.bin.daemon import Daemon
-
-        try:
-            Daemon().create_account(pid)
-        except Exception as ex:
-            print('error: %s' % str(ex))
-            return
+            return addr_donation['integrated_address']
 
     @classmethod
     def find_by_args(cls, status: int = None, cat: str = None, limit: int = 20, offset=0):

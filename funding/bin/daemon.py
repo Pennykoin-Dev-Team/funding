@@ -9,6 +9,7 @@ class Daemon:
         self.password = settings.RPC_PASSWORD
         self.headers = {"User-Agent": "Mozilla"}
 
+'''
     def create_address(self, label_name):
         data = {
             'method': 'create_address',
@@ -17,7 +18,9 @@ class Daemon:
             'id': '0'
         }
         return self._make_request(data)
+'''
 
+'''
     def create_account(self, pid):
         data = {
             'method': 'create_account',
@@ -26,11 +29,12 @@ class Daemon:
             'id': '0'
         }
         return self._make_request(data)
+'''
 
-    def get_address(self, index, proposal_id):
+    def get_address(self, wallet_address, proposal_id):
         data = {
-            'method': 'getaddress',
-            'params': {'account_index': proposal_id, 'address_index': '[0]'},
+            'method': 'create_integrated',
+            'params': {'address': wallet_address, 'payment_id': "{:0=64}".format(proposal_id)},
             'jsonrpc': '2.0',
             'id': '0'
         }
@@ -55,7 +59,7 @@ class Daemon:
             'sum': sum([float(z['amount'])/1e12 for z in data]),
             'txs': data
         }
-    
+
     def get_transfers_out(self, index, proposal_id):
         data = {
             "method":"get_transfers",

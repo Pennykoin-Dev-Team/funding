@@ -83,3 +83,6 @@ def coin_to_usd(amt: float, usd_per_btc: float, btc_per_coin: float):
         return round(usd_per_btc / (1.0 / (amt * btc_per_coin)), 2)
     except:
         pass
+
+def get_payment_id(pid: String):
+    return pid
