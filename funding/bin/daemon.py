@@ -9,28 +9,6 @@ class Daemon:
         self.password = settings.RPC_PASSWORD
         self.headers = {"User-Agent": "Mozilla"}
 
-'''
-    def create_address(self, label_name):
-        data = {
-            'method': 'create_address',
-            'params': {'account_index': 0, 'label': label_name},
-            'jsonrpc': '2.0',
-            'id': '0'
-        }
-        return self._make_request(data)
-'''
-
-'''
-    def create_account(self, pid):
-        data = {
-            'method': 'create_account',
-            'params': {'label': '%s' % pid},
-            'jsonrpc': '2.0',
-            'id': '0'
-        }
-        return self._make_request(data)
-'''
-
     def get_address(self, wallet_address, proposal_id):
         data = {
             'method': 'create_integrated',
@@ -46,17 +24,17 @@ class Daemon:
 
     def get_transfers_in(self, index, proposal_id):
         data = {
-            "method":"get_transfers",
-            "params": {"pool": True, "in": True, "account_index": proposal_id},
+            "method":"get_payments",
+            "params": {"payment_id": "{:0=64}".format(proposal_id)},
             "jsonrpc": "2.0",
             "id": "0",
         }
         data = self._make_request(data)
-        data = data['result'].get('in', [])
+        data = data['result'].get('payments', [])
         for d in data:
-            d['amount_human'] = float(d['amount'])/1e12
+            d['amount_human'] = float(d['amount'])/1e2
         return {
-            'sum': sum([float(z['amount'])/1e12 for z in data]),
+            'sum': sum([float(z['amount'])/1e2 for z in data]),
             'txs': data
         }
 

@@ -113,6 +113,7 @@ class Proposal(base):
             raise Exception('wrong category')
         self.category = category
 
+
     @property
     def json(self):
         return {
@@ -139,8 +140,8 @@ class Proposal(base):
             return
 
         # check if we have a valid addr_donation generated. if not, make one.
-        if not result.addr_donation and result.status >= 2:
-            Proposal.generate_donation_addr(result)
+        #if not result.addr_donation and result.status >= 2:
+            #Proposal.get_addr_donation()
 
         return result
 
@@ -205,7 +206,7 @@ class Proposal(base):
         for tx in data['txs']:
             if prices:
                 tx['amount_usd'] = coin_to_usd(amt=tx['amount_human'], btc_per_coin=prices['coin-btc'], usd_per_btc=prices['btc-usd'])
-            tx['datetime'] = datetime.fromtimestamp(tx['timestamp'])
+            tx['datetime'] = ""#datetime.fromtimestamp(tx['timestamp'])
 
         if data.get('sum', 0.0):
             data['pct'] = 100 / float(self.funds_target / data.get('sum', 0.0))
@@ -266,23 +267,23 @@ class Proposal(base):
 
         return data
 
-    @staticmethod
-    def get_addr_donation(cls):
+    #@staticmethod
+    def get_addr_donation(self):
         from funding.factory import db_session
         from funding.bin.daemon import Daemon
-        if cls.addr_donation:
-            return cls.addr_donation
+        if self.addr_donation:
+            return self.addr_donation
 
         try:
-            addr_donation = Daemon().get_address(wallet_address=settings.RPC_WADDR, proposal_id=cls.id)
+            addr_donation = Daemon().get_address(wallet_address=settings.RPC_WADDR, proposal_id=self.id)
             if not isinstance(addr_donation, dict):
-                raise Exception('get_address, needs dict; %d' % cls.id)
+                raise Exception('get_address, needs dict; %d' % self.id)
         except Exception as ex:
             print('error: %s' % str(ex))
             return
 
         if addr_donation.get('integrated_address'):
-            cls.addr_donation = addr_donation['integrated_address']
+            self.addr_donation = addr_donation['integrated_address']
             db_session.commit()
             db_session.flush()
             return addr_donation['integrated_address']

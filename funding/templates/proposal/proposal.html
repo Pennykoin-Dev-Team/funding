@@ -88,39 +88,17 @@
                                         <a style="margin:4px;" href="#incoming_txs">Details...</a>
                                     </small>
                                     {% endif %}
-                                    <div class="progress">
-                                        <div class="progress-bar progress-monero progress-bar-striped" style="width: 100.0%;">
-                                        </div>
-                                    </div>
                                     <hr>
                                 </div>
                                 <div class="col-lg-8">
                                     {{proposal.balance['available'] or 0}} PK Raised
                                     <div class="progress">
-                                        <div class="progress-bar progress-warning progress-bar" style="width: {{proposal.balance['remaining_pct']}}%;">
+                                        <div class="progress-bar progress-warning progress-bar" style="width: {{proposal.balance['pct']}}%;">
                                         </div>
                                     </div>
                                     <hr>
                                 </div>
                                 <br/>
-                                
-                                <br/>
-                                <div class="col-lg-8">
-                                    {{proposal.spends['spent'] or 0}} PK Paid out
-                                    <div class="progress">
-                                        <div class="progress-bar progress-warning progress-bar" style="width: {{proposal.spends['remaining_pct']}}%;">
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-                                <div class="col-lg-8">
-                                    {{(proposal.balance['available']-proposal.spends['spent']) or 0}} PK Available
-                                    <div class="progress">
-                                        <div class="progress-bar progress-warning progress-bar" style="width: {{proposal.balance['remaining_pct']}}%;">
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
 
                                 <br/>
                             </div>
@@ -169,10 +147,10 @@
                     <ul class="list-group">
                         {% for tx in proposal.balance['txs'] %}
                         <li class="list-group-item">
-                            {{tx['datetime'].strftime('%Y-%m-%d %H:%M')}}
-                            <span style="float:right"><b>Blockheight</b>: {{tx['height']}}</span>
+                            {# {{tx['datetime'].strftime('%Y-%m-%d %H:%M')}} #}
+                            <span style="float:right"><b>Blockheight</b>: {{tx['block_height']}}</span>
                             <br>
-                            <a target="_blank" href="https://pkblocks.com/tx/{{tx['txid']}}">{{tx['txid'][:32]}}...</a>
+                            <a target="_blank" href="https://blocks.pennykoin.com/tx/{{tx['tx_hash']}}">{{tx['tx_hash'][:32]}}...</a>
                             <span style="float:right;color:#008926;font-weight:bold;">
                                 + {{tx['amount_human']|round(2)}} PK
                                 {% if 'amount_usd' in tx %}

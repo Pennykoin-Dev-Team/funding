@@ -165,8 +165,8 @@ def proposal_api_add(title, content, pid, funds_target, addr_receiving, category
         p = Proposal(headline=title, content=content, category='misc', user=current_user)
         proposalID = current_user
 #        addr_donation = Proposal.generate_proposal_subaccount(proposalID)
-        addr_donation = Porposal.get_addr_donation(proposalID)
-        p.addr_donation = addr_donation
+        #addr_donation = Proposal.get_addr_donation(proposalID)
+        #p.addr_donation = addr_donation
         p.html = html
         p.last_edited = datetime.now()
         p.funds_target = funds_target
@@ -178,6 +178,10 @@ def proposal_api_add(title, content, pid, funds_target, addr_receiving, category
 
 
     db_session.commit()
+    if not pid:
+        p.get_addr_donation(p.id)
+        db_session.commit()
+    
     db_session.flush()
 
     # reset cached statistics
