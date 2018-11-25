@@ -10,24 +10,24 @@
             </p>
             <p>
                 <ul>
-                    <li><a href="#api_convert_wow_usd">/api/1/convert/pk-usd</a></li>
+                    <li><a href="#api_convert_pk_usd">/api/1/convert/pk-usd</a></li>
                     <li><a href="#api_proposals">/api/1/proposals</a></li>
                 </ul>
             </p>
             <br>
 
-            <div class="api_container" id="api_convert_wow_usd">
+            <div class="api_container" id="api_convert_pk_usd">
                 <h5><small>GET</small> <code>/api/1/convert/pk-usd</code></h5>
                 <hr>
                 <p>
-                    PK to USD conversion. Data is pulled from Bittrex.com and CoinMarketCap.com
+                    PK to USD conversion. Data is pulled from CoinGecko.com and CoinMarketCap.com
                 </p>
 
                 <b>Example:</b>
-                <pre>curl -vvX GET 'https://pkfunding.pennykoin.com/api/1/convert/pk-usd?amount=1000'</pre>
+                <pre>curl -vvX GET 'http://funding.pennykoin.com/api/1/convert/pk-usd?amount=1000000'</pre>
 
                 <b>Response:</b>
-                <pre>{"usd": 729.82}</pre>
+                <pre>{"usd": 224.02}</pre>
             </div>
 
             <div class="api_container" id="api_proposals">
@@ -45,27 +45,27 @@
                 </ul>
 
                 <b>Example:</b>
-                <pre>curl -vvX GET 'https://pkfunding.pennykoin.com/api/1/proposals?offset=0&limit=1&status=2'</pre>
+                <pre>curl -vvX GET 'http://funding.pennykoin.com/api/1/proposals?offset=0&limit=1&status=2'</pre>
 
                 <b>Response:</b>
                 <pre>{
-   {
-  "data": [
-    {
-      "addr_donation": "XnYwVf3coXSCvQAjzzTKJEeMWxzCMUbzQbA3kZsqPoieR1xYW7RxbLjjLGmZLDwXc6hsNGDwWeyMTDxNL8AYHVjH1WCD8dmHy", 
-      "category": "marketing", 
-      "content_markdown": "elite cam = good cam! :D \nwords left to go = 20\nso many more to go.\nwatch that word counter go up !", 
-      "date_posted": "Aug 28 2018 02:46:05", 
-      "date_posted_epoch": "1535424365", 
-      "funded_pct": 0.0, 
-      "funds_target": 1.0, 
-      "headline": "cam fixed the funds_target issue", 
-      "id": 19, 
-      "status": 2, 
-      "user": "camthegeek"
-    }
-  ]
-}
+                  {
+                    "data": [
+                      {
+                        "addr_donation": "PkR6NSWaf3D94VCjK11Dhq94VCjK11Dhq94VCjK11Dhq94VCjK11Dhq94VCjK11Dhq94VCjK11Dhq94VCjK11Dhq94Y5xV2KfMajTFxJ3tSfRUKEDD8q9tBT7BAzm9kGxTrcMhPJ9WnC1zEiJELmrQiHgyBjntHPUfYhD4kGiXeTZbB919otfdNYq",
+                        "category": "misc",
+                        "content_markdown": "#### Why?\n\nWhat problem(s) are you trying to solve?\n\n#### How much?\n\nWhat is the total cost in pk? List expenses per item. Total hours of work and per hour rate. What exchange rates are you using?\n\n#### What?\n\nDescribe your idea in detail.\n\n#### Milestones?\n\nBreak down tasks into different stages. Each stage should have the estimated number of days/weeks needed and cost per stage.\n\n#### Outcomes?\n\nWhat will be delivered? What goals will be reached?\n\n#### Why you?\n\nWhat skills and experience do you have?",
+                        "date_posted": "Nov 21 2018 21:51:18",
+                        "date_posted_epoch": "1542855078",
+                        "funded_pct": 0.0,
+                        "funds_target": 1000000.0,
+                        "headline": "test test test",
+                        "id": 1,
+                        "status": 2,
+                        "user": "lifcey"
+                      }
+                    ]
+                  }
 }</pre>
             </div>
         </div>

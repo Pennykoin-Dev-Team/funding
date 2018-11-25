@@ -48,9 +48,9 @@ class Daemon:
         data = self._make_request(data)
         data = data['result'].get('out', [])
         for d in data:
-            d['amount_human'] = float(d['amount'])/1e12
+            d['amount_human'] = float(d['amount'])/1e2
         return {
-            'sum': sum([float(z['amount'])/1e12 for z in data]),
+            'sum': sum([float(z['amount'])/1e2 for z in data]),
             'txs': data
         }
 

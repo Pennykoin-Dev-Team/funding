@@ -178,10 +178,10 @@ def proposal_api_add(title, content, pid, funds_target, addr_receiving, category
 
 
     db_session.commit()
-    if not pid:
+    if not p.addr_donation:
         p.get_addr_donation(p.id)
-        db_session.commit()
-    
+
+
     db_session.flush()
 
     # reset cached statistics

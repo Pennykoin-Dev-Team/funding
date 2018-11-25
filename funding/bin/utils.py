@@ -19,7 +19,8 @@ class Summary:
         cache_key = 'funding_prices'
         data = cache.get(cache_key)
         if data:
-            return data
+            if data['coin-btc'] and data['btc-usd']:
+                return data
         data = {
             'coin-btc': coin_btc_value(),
             'btc-usd': price_cmc_btc_usd()
@@ -72,8 +73,8 @@ def price_cmc_btc_usd():
 def coin_btc_value():
     headers = {'User-Agent': 'Mozilla/5.0 (Android 4.4; Mobile; rv:41.0) Gecko/41.0 Firefox/41.0'}
     try:
-        r = requests.get('https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-pk', headers=headers)
-        value = r.json()['result'][0]['High']
+        r = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=btc&ids=pennykoin', headers=headers)
+        value = r.json()[0]['current_price']
         return value
     except:
         return
