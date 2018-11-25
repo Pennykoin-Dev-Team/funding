@@ -28,8 +28,8 @@ Better instructions to follow in the future.
 Create a Postgres user/database for this project
 
 ```
-git clone https://github.com/camthegeek/pk-funding-system.git
-cd pk-funding-system
+git clone https://github.com/Pennykoin-Dev-Team/funding.git
+cd funding
 virtualenv -p /usr/bin/python3 <venv>
 source <venv>/bin/activate
 pip install -r requirements.txt
